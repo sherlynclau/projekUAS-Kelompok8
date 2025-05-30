@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class BarangMasuk extends Model
+{
+    protected $table = 'barang_masuk';
+    protected $fillable = [
+        'tanggal',
+        'kode_transaksi',
+        'kode_barang',
+        'nama_barang',
+        'kategori',
+        'jumlah',
+        'satuan',
+    ];
+
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class, 'id_barang');
+    }
+}
