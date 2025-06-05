@@ -54,8 +54,8 @@
                       <td>{{ $barangMasuk->kategori }}</td>
                   </tr>
                   <tr>
-                      <th>Jumlah</th>
-                      <td>{{ $barangMasuk->jumlah }}</td>
+                      <th>Jumlah Stok</th>
+                      <td>{{ $barangMasuk->jumlah_stok}}</td>
                   </tr>
                   <tr>
                       <th>Satuan</th>

@@ -45,9 +45,9 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="jumlah" class="form-label">Jumlah</label>
-                        <input type="number" class="form-control" name="jumlah" value="{{ old('jumlah', $barangKeluar->jumlah) }}">
-                        @error('jumlah')
+                        <label for="jumlah_stok" class="form-label">Jumlah Stok</label>
+                        <input type="number" class="form-control" name="jumlah_stok" value="{{ old('jumlah_stok', $barangKeluar->jumlah_stok) }}">
+                        @error('jumlah_stok')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>

@@ -14,10 +14,10 @@ Route::get('/profil', function () { //utk di web
     return view ('profil'); //samain kek view
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index']); 
     Route::resource('/barang', BarangController::class);
     Route::resource('/barangmasuk', BarangMasukController::class);
     Route::resource('/barangkeluar', BarangKeluarController::class);
     Route::get('/tambahbarang', [BarangController::class, 'create'])->name('barang.create');
-});
+
+    

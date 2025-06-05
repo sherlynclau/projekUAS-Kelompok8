@@ -36,7 +36,7 @@ class BarangMasukController extends Controller
             'kode_barang' => 'required',
             'nama_barang' => 'required',
             'kategori' => 'required',
-            'jumlah' => 'required|integer',
+            'jumlah_stok' => 'required|integer',
             'satuan' => 'required',
         ]);
         BarangMasuk::create($input);
@@ -55,24 +55,25 @@ class BarangMasukController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BarangMasuk $barangMasuk)
+    public function edit( $barangMasuk)
     {
+        $barangMasuk = BarangMasuk::findOrFail($barangMasuk);
         return view('barangMasuk.edit', compact('barangMasuk'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BarangMasuk $barangMasuk)
+    public function update(Request $request, $barangMasuk)
     {
-        $barangMasuk = BarangMasuk::findOrFail($barangMasuk->id);
+        $barangMasuk = BarangMasuk::findOrFail($barangMasuk);
         $input = $request->validate([
             'tanggal' => 'required|date',
             'kode_transaksi' => 'required',
             'kode_barang' => 'required',
             'nama_barang' => 'required',
             'kategori' => 'required',
-            'jumlah' => 'required|integer',
+            'jumlah_stok' => 'required|integer',
             'satuan' => 'required',
         ]);
         $barangMasuk->update($input);

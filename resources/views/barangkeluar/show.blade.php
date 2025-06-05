@@ -31,39 +31,36 @@
               </div>
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>    
-                            <th>Tanggal</th>
-                            <th>Kode Transaksi</th>
-                            <th>Kode Barang</th>
-                            <th>Nama Barang</th>   
-                            <th>Jumlah</th>
-                            <th>Satuan</th>
-                            <th>Penerima</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ $barangKeluar->tanggal }}</td>
-                            <td>{{ $barangKeluar->kode_transaksi }}</td>
-                            <td>{{ $barangKeluar->kode_barang }}</td>
-                            <td>{{ $barangKeluar->nama_barang }}</td>
-                            <td>{{ $barangKeluar->jumlah }}</td>
-                            <td>{{ $barangKeluar->satuan }}</td>
-                            <td>{{ $barangKeluar->penerima }}</td>
-                            <td>
-                                <a href="{{ route('barangkeluar.edit', $barangKeluar->id) }}" class="btn btn-warning">Edit</a>
-                                <form action="{{ route('barangkeluar.destroy', $barangKeluar->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+              <table class="table table-bordered table-striped">
+                  <tr>
+                      <th>Tanggal</th>
+                      <td>{{ $barangKeluar->tanggal }}</td>
+                  </tr>
+                  <tr>
+                      <th>Kode Transaksi</th>
+                      <td>{{ $barangKeluar->kode_transaksi }}</td>
+                  </tr>
+                  <tr>
+                      <th>Kode Barang</th>
+                      <td>{{ $barangKeluar->kode_barang }}</td>
+                  </tr>
+                  <tr>
+                      <th>Nama Barang</th>
+                      <td>{{ $barangKeluar->nama_barang }}</td>
+                  </tr>
+                  <tr>
+                      <th>Jumlah Stok</th>
+                      <td>{{ $barangKeluar->jumlah_stok }}</td>
+                  </tr>
+                  <tr>
+                      <th>Satuan</th>
+                      <td>{{ $barangKeluar->satuan }}</td>
+                  </tr>
+                  <tr>
+                      <th>Penerima</th>
+                      <td>{{ $barangKeluar->penerima }}</td>
+                  </tr>
+              </table>
             </div>
         </div>
     </div>

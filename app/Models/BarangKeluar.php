@@ -12,13 +12,13 @@ class BarangKeluar extends Model
         'kode_transaksi',
         'kode_barang',
         'nama_barang',
-        'jumlah',
+        'jumlah_stok',
         'satuan',
         'penerima',
     ];
 
     public function barang()
     {
-        return $this->belongsTo(Barang::class, 'id_barang');
+        return $this->belongsTo(Barang::class, 'kode_barang', 'kode_barang');
     }
 }

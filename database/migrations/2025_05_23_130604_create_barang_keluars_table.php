@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('tanggal');
             $table->string('kode_transaksi')->unique();
-            $table->string('kode_barang')->unique();
+            $table->string('kode_barang');
             $table->string('nama_barang');
-            $table->string('jumlah');
+            $table->integer('jumlah_stok');
             $table->string('satuan');
-            $table->string('penerima');;
+            $table->string('penerima');
             $table->timestamps();
+
+            // Foreign key ke tabel barang
+            $table->foreign('kode_barang')->references('kode_barang')->on('barang')->onDelete('cascade');
         });
     }
 

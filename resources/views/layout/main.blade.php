@@ -207,7 +207,7 @@
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
@@ -218,18 +218,24 @@
                     alt="User Image"
                   />
                   <p>
-                    Alexander Pierce - Admin
-                    <small>Member since Nov. 2023</small>
+                    {{ Auth::user()->name }} - {{ strtoupper(Auth::user()->role) }}
+
                   </p>
                 </li>
                 <!--end::User Image-->
                 <!--begin::Menu Body-->
-                <li class="user-body">
-                  <!--begin::Row-->
-                  <div class="row">
-                    <div class="col-12 p-2"><a href="#">Profil</a></div>
-                    <div class="col-12 p-2"><a href="#">Log out</a></div>
-                  </div>
+                <li class="user-footer d-flex justify-content-between">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();" class="btn btn-default btn-flat float-end">
+                                {{ __('Sign Out') }}
+                            </x-dropdown-link>
+                        </form>
                   <!--end::Row-->
                 </li>
               </ul>
@@ -283,24 +289,30 @@
                   <p>Daftar Barang</p>
                 </a>
               </li>
+              @can('viewAny', App\Models\BarangMasuk::class)
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('barangmasuk') }}'>
                   <i class="nav-icon bi bi-box-arrow-in-down"></i>
                   <p>Barang Masuk</p>
                 </a>
               </li>
+              @endcan
+               @can('viewAny', App\Models\BarangMasuk::class)
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('barangkeluar') }}'>
                   <i class="nav-icon bi bi-box-arrow-up"></i>
                   <p>Barang Keluar</p>
                 </a>
               </li>
+              @endcan
+              @can('create', App\Models\Barang::class)
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('tambahbarang') }}'>
                   <i class="nav-icon bi bi-plus-square"></i>
                   <p>Tambah Barang</p>
                 </a>
               </li>
+              @endcan
             </ul>
           </nav>
             <!--end::Sidebar Menu-->

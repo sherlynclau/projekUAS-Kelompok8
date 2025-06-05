@@ -44,9 +44,12 @@
                 </tr>
             </table>
             <div class="d-flex gap-2">
+                @can('update', $barang)
                 <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-warning">
-                    <i class="bi bi-pencil-square"></i> Edit
+                <i class="bi bi-pencil-square"></i> Edit
                 </a>
+                @endcan
+                @can('delete', $barang)                
                 <form action="{{ route('barang.destroy', $barang->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus barang ini?')" style="display:inline;">
                     @csrf
                     @method('DELETE')
@@ -54,6 +57,7 @@
                         <i class="bi bi-trash"></i> Hapus
                     </button>
                 </form>
+                @endcan
             </div>
             </div>
             </div>

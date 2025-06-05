@@ -13,12 +13,12 @@ class BarangMasuk extends Model
         'kode_barang',
         'nama_barang',
         'kategori',
-        'jumlah',
+        'jumlah_stok',
         'satuan',
     ];
 
     public function barang()
     {
-        return $this->belongsTo(Barang::class, 'id_barang');
+        return $this->belongsTo(Barang::class, 'kode_barang', 'kode_barang');
     }
 }

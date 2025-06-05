@@ -30,7 +30,9 @@
               </div>
             </div>
             <div class="card-body">
+                @can('create', App\Models\BarangMasuk::class)
               <a href="{{ route('barangmasuk.create') }}" class="btn btn-primary"> Tambah </a>
+              @endcan
                 <table class = "table">
                     <thead>
                         <tr>    
@@ -39,7 +41,7 @@
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>   
                             <th>Kategori</th>
-                            <th>Jumlah</th>
+                            <th>Jumlah Stok</th>
                             <th>Satuan</th>
                             <th>Aksi</th>
                         </tr>
@@ -53,16 +55,20 @@
                                 <td>{{ $item->kode_barang }}</td>
                                 <td>{{ $item->nama_barang }}</td>
                                 <td>{{ $item->kategori }}</td>
-                                <td>{{ $item->jumlah }}</td>
+                                <td>{{ $item->jumlah_stok }}</td>
                                 <td>{{ $item->satuan }}</td>
                                 <td>
                                     <a href="{{ route('barangmasuk.show', $item->id) }}" class="btn btn-info">Show</a>
+                                    @can('update', $item)
                                     <a href="{{ route('barangmasuk.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                    @endcan
+                                    @can('delete', $item)
                                     <form action="{{ route('barangmasuk.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
