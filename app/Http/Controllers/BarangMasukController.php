@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BarangMasuk;
+use App\Models\Barang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class BarangMasukController extends Controller
 {
@@ -21,6 +24,9 @@ class BarangMasukController extends Controller
      */
     public function create()
     {
+        // Jika ingin menampilkan daftar barang di form create, bisa tambahkan:
+        // $barangs = Barang::all();
+        // return view('barangmasuk.create', compact('barangMasuk', 'barangs'));
         $barangMasuk = BarangMasuk::all();
         return view('barangmasuk.create', compact('barangMasuk'));
     }
@@ -32,15 +38,37 @@ class BarangMasukController extends Controller
     {
         $input = $request->validate([
             'tanggal' => 'required|date',
-            'kode_transaksi' => 'required',
-            'kode_barang' => 'required',
+            'kode_transaksi' => 'required|unique:barang_masuk,kode_transaksi',
+            'kode_barang' => 'required|exists:barang,kode_barang',
             'nama_barang' => 'required',
             'kategori' => 'required',
-            'jumlah_stok' => 'required|integer',
+            'jumlah_stok' => 'required|integer|min:1',
             'satuan' => 'required',
         ]);
-        BarangMasuk::create($input);
-        return redirect()->route('barangmasuk.index')->with('success', 'Barang masuk berhasil ditambahkan.');
+
+        DB::beginTransaction();
+        try {
+            // Cari barang berdasarkan kode_barang
+            $barang = Barang::where('kode_barang', $input['kode_barang'])->first();
+
+            if (!$barang) {
+                DB::rollBack();
+                return redirect()->back()->withErrors(['kode_barang' => 'Barang dengan kode barang ini tidak ditemukan.'])->withInput();
+            }
+
+            // Tambah stok barang
+            $barang->increment('jumlah_stok', $input['jumlah_stok']);
+
+            // Simpan data barang masuk
+            BarangMasuk::create($input);
+
+            DB::commit();
+            return redirect()->route('barangmasuk.index')->with('success', 'Barang masuk berhasil ditambahkan dan stok diperbarui.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Gagal mencatat barang masuk dan memperbarui stok: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mencatat barang masuk. Silakan coba lagi.')->withInput();
+        }
     }
 
     /**
@@ -55,10 +83,10 @@ class BarangMasukController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $barangMasuk)
+    public function edit($barangMasuk)
     {
         $barangMasuk = BarangMasuk::findOrFail($barangMasuk);
-        return view('barangMasuk.edit', compact('barangMasuk'));
+        return view('barangmasuk.edit', compact('barangMasuk'));
     }
 
     /**
@@ -69,8 +97,8 @@ class BarangMasukController extends Controller
         $barangMasuk = BarangMasuk::findOrFail($barangMasuk);
         $input = $request->validate([
             'tanggal' => 'required|date',
-            'kode_transaksi' => 'required',
-            'kode_barang' => 'required',
+            'kode_transaksi' => 'required|unique:barang_masuk,kode_transaksi,' . $barangMasuk->id,
+            'kode_barang' => 'required|exists:barang,kode_barang',
             'nama_barang' => 'required',
             'kategori' => 'required',
             'jumlah_stok' => 'required|integer',
@@ -85,7 +113,7 @@ class BarangMasukController extends Controller
      */
     public function destroy(BarangMasuk $barangMasuk)
     {
-        $barangMasuk = BarangMasuk::findOrFail($barangMasuk->id);
+        // Jika ingin mengurangi stok barang saat barang masuk dihapus, tambahkan logika di sini.
         $barangMasuk->delete();
         return redirect()->route('barangmasuk.index')->with('success', 'Barang masuk berhasil dihapus.');
     }

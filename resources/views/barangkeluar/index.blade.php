@@ -40,7 +40,7 @@
                             <th>Kode Transaksi</th>
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>   
-                            <th>Jumlah Stok</th>
+                            <th>Jumlah</th>
                             <th>Satuan</th>
                             <th>Penerima</th>
                             <th>Aksi</th>

@@ -41,7 +41,7 @@
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>   
                             <th>Kategori</th>
-                            <th>Jumlah Stok</th>
+                            <th>Jumlah</th>
                             <th>Satuan</th>
                             <th>Aksi</th>
                         </tr>

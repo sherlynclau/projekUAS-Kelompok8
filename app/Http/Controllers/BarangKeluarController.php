@@ -62,14 +62,15 @@ class BarangKeluarController extends Controller
             }
 
             // 5. Periksa ketersediaan stok
-            if ($barang->stock < $input['jumlah_stok']) {
-                DB::rollBack(); // Batalkan transaksi jika stok tidak mencukupi
-                return redirect()->back()->withErrors(['jumlah_stok' => 'Stok tidak mencukupi. Stok tersedia: ' . $barang->stock . ' ' . $barang->satuan])->withInput();
+            if ($barang->jumlah_stok < $input['jumlah_stok']) {
+                DB::rollBack();
+                return redirect()->back()->withErrors([
+                    'jumlah_stok' => 'Stok tidak mencukupi. Stok tersedia: ' . $barang->jumlah_stok . ' ' . $barang->satuan
+                ])->withInput();
             }
 
             // 6. Kurangi stok barang
-            // Menggunakan metode decrement() untuk mengurangi stok secara aman
-            $barang->decrement('stock', $input['jumlah_stok']);
+            $barang->decrement('jumlah_stok', $input['jumlah_stok']);
 
             // 7. Simpan data barang keluar
             BarangKeluar::create($input);
