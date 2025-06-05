@@ -12,7 +12,7 @@ class BarangMasukController extends Controller
      */
     public function index()
     {
-        $barangMasuk = BarangMasuk::with('barang')->get();
+        $barangMasuk = BarangMasuk::all();
         return view('barangmasuk.index', compact('barangMasuk'));
     }
 
@@ -46,8 +46,9 @@ class BarangMasukController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BarangMasuk $barangMasuk)
+    public function show($barangMasuk)
     {
+        $barangMasuk = BarangMasuk::findOrFail($barangMasuk);
         return view('barangmasuk.show', compact('barangMasuk'));
     }
 
@@ -56,7 +57,6 @@ class BarangMasukController extends Controller
      */
     public function edit(BarangMasuk $barangMasuk)
     {
-        $barangMasuk = BarangMasuk::findOrFail($barangMasuk);
         return view('barangMasuk.edit', compact('barangMasuk'));
     }
 

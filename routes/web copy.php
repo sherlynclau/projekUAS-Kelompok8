@@ -14,9 +14,10 @@ Route::get('/profil', function () { //utk di web
     return view ('profil'); //samain kek view
 });
 
-Route::resource('/barang', BarangController::class);
-Route::resource('/barangmasuk', BarangMasukController ::class);
-Route::resource('/barangkeluar', BarangKeluarController::class);
-Route::resource('/dashboard', DashboardController::class);
-Route::get('/tambahbarang', [BarangController::class, 'create'])->name('barang.create');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/barang', BarangController::class);
+    Route::resource('/barangmasuk', BarangMasukController::class);
+    Route::resource('/barangkeluar', BarangKeluarController::class);
+    Route::get('/tambahbarang', [BarangController::class, 'create'])->name('barang.create');
+});

@@ -12,7 +12,7 @@ class BarangKeluarController extends Controller
      */
     public function index()
     {
-        $barangKeluar = BarangKeluar::with('barang')->get();
+        $barangKeluar = BarangKeluar::all();
         return view('barangkeluar.index', compact('barangKeluar'));
     }
 
@@ -48,6 +48,7 @@ class BarangKeluarController extends Controller
      */
     public function show(BarangKeluar $barangKeluar)
     {
+        $barangKeluar = BarangKeluar::findOrFail($barangKeluar->id);
         return view('barangkeluar.show', compact('barangKeluar'));
     }
 
@@ -56,16 +57,16 @@ class BarangKeluarController extends Controller
      */
     public function edit(BarangKeluar $barangKeluar)
     {
-        $barangKeluar = BarangKeluar::findOrFail($barangKeluar);
+        // $barangKeluar = BarangKeluar::findOrFail($barangKeluar->id);
         return view('barangkeluar.edit', compact('barangKeluar'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BarangKeluar $barangKeluar)
+    public function update(Request $request, $barangKeluar)
     {
-        $barangKeluar = BarangKeluar::findOrFail($barangKeluar->id);
+        
         $input = $request->validate([
             'tanggal' => 'required|date',
             'kode_transaksi' => 'required',

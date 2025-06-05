@@ -22,6 +22,5 @@ require __DIR__.'/auth.php';
 Route::resource('/barang', BarangController::class);
 Route::resource('/barangmasuk', BarangMasukController ::class);
 Route::resource('/barangkeluar', BarangKeluarController::class);
-Route::resource('/dashboard', DashboardController::class);
 Route::get('/tambahbarang', [BarangController::class, 'create'])->name('barang.create');
-
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); 
