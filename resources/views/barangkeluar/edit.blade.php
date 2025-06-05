@@ -10,14 +10,14 @@
                   <div class="card-header"><div class="card-title">Edit Barang Keluar</div></div>
                   <!--end::Header-->
                   <!--begin::Form-->
-                  <form action="{{ route('barangkeluar.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('barangkeluar.update', $barangKeluar->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <!--begin::Body-->
                     <div class="card-body">
                         <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal</label>
-                        <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal') old ('tanggal') : $barangKeluara->tanggal }}">
+                        <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal') ? old('tanggal') : $barangKeluar->tanggal }}">
                         @error('tanggal')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror

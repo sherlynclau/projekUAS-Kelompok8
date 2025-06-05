@@ -43,6 +43,18 @@
                     <td colspan="3">{{ $barang->deskripsi }}</td>
                 </tr>
             </table>
+            <div class="d-flex gap-2">
+                <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-warning">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a>
+                <form action="{{ route('barang.destroy', $barang->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus barang ini?')" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Hapus
+                    </button>
+                </form>
+            </div>
             </div>
             </div>
         </div>

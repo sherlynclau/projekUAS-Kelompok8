@@ -272,25 +272,32 @@
               data-accordion="false"
             >
               <li class="nav-item">
+                <a class='nav-link' href='{{ url('dashboard') }}'>
+                  <i class="nav-icon bi bi-house"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class='nav-link' href='{{ url('barang') }}'>
-                  <i class="nav-icon bi bi-box-seam-fill"></i>
+                  <i class="nav-icon bi bi-box2"></i>
                   <p>Daftar Barang</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('barangmasuk') }}'>
-                  <i class="nav-icon bi bi-box-seam-fill"></i>
+                  <i class="nav-icon bi bi-box-arrow-in-down"></i>
                   <p>Barang Masuk</p>
                 </a>
+              </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('barangkeluar') }}'>
-                  <i class="nav-icon bi bi-box-seam-fill"></i>
+                  <i class="nav-icon bi bi-box-arrow-up"></i>
                   <p>Barang Keluar</p>
                 </a>
-              </li> 
+              </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('tambahbarang') }}'>
-                  <i class="nav-icon bi bi-tags-fill"></i>
+                  <i class="nav-icon bi bi-plus-square"></i>
                   <p>Tambah Barang</p>
                 </a>
               </li>

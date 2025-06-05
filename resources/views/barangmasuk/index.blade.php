@@ -48,7 +48,7 @@
                     <tbody>
                         @foreach ($barangMasuk as $item)
                             <tr>
-                                <td>{{ $item->tanggal }}</td>
+                                <td>{{ $item->tanggal}}</td>
                                 <td>{{ $item->kode_transaksi}}</td>
                                 <td>{{ $item->kode_barang }}</td>
                                 <td>{{ $item->nama_barang }}</td>
@@ -56,6 +56,7 @@
                                 <td>{{ $item->jumlah }}</td>
                                 <td>{{ $item->satuan }}</td>
                                 <td>
+                                    <a href="{{ route('barangmasuk.show', $item->id) }}" class="btn btn-info">Show</a>
                                     <a href="{{ route('barangmasuk.edit', $item->id) }}" class="btn btn-warning">Edit</a>
                                     <form action="{{ route('barangmasuk.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf

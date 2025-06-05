@@ -8,8 +8,9 @@
             <div class="card-header">
                 <div class="card-title">Edit Barang</div>
             </div>
-            <form action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('barang.update', $barang->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="foto" class="form-label">Foto</label>
@@ -20,14 +21,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="kode_barang" class="form-label">Kode Barang</label>
-                        <input type="text" class="form-control" name="kode_barang" value="{{ old('kode_barang') ? old ('kode_barang') : $barang->kode }}">
+                        <input type="text" class="form-control" name="kode_barang" value="{{ old('kode_barang') ? old ('kode_barang') : $barang->kode_barang }}">
                         @error('kode_barang')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="nama_barang" class="form-label">Nama Barang</label>
-                        <input type="text" class="form-control" name="nama_barang" value="{{ old('nama_barang') ? old ('nama_barang') : $barang->nama  }}">
+                        <input type="text" class="form-control" name="nama_barang" value="{{ old('nama_barang') ? old ('nama_barang') : $barang->nama_barang }}">
                         @error('nama_barang')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -43,15 +44,15 @@
                         <label for="satuan" class="form-label">Satuan</label>
                         <select class="form-control" name="satuan" required>
                             <option value="">-- Pilih Satuan --</option>
-                            <option value="pcs" {{ old('satuan') == 'pcs' ? 'selected' : '' }}>pcs</option>
-                            <option value="unit" {{ old('satuan') == 'unit' ? 'selected' : '' }}>unit</option>
-                            <option value="kotak" {{ old('satuan') == 'kotak' ? 'selected' : '' }}>kotak</option>
-                            <option value="lembar" {{ old('satuan') == 'lembar' ? 'selected' : '' }}>lembar</option>
-                            <option value="pak" {{ old('satuan') == 'pak' ? 'selected' : '' }}>pak</option>
-                            <option value="rim" {{ old('satuan') == 'rim' ? 'selected' : '' }}>rim</option>
-                            <option value="dus" {{ old('satuan') == 'dus' ? 'selected' : '' }}>dus</option>
-                            <option value="roll" {{ old('satuan') == 'roll' ? 'selected' : '' }}>roll</option>
-                            <option value="lusin" {{ old('satuan') == 'lusin' ? 'selected' : '' }}>lusin</option>
+                            <option value="pcs" {{ old('satuan', $barang->satuan) == 'pcs' ? 'selected' : '' }}>pcs</option>
+                            <option value="unit" {{ old('satuan', $barang->satuan) == 'unit' ? 'selected' : '' }}>unit</option>
+                            <option value="kotak" {{ old('satuan', $barang->satuan) == 'kotak' ? 'selected' : '' }}>kotak</option>
+                            <option value="lembar" {{ old('satuan', $barang->satuan) == 'lembar' ? 'selected' : '' }}>lembar</option>
+                            <option value="pak" {{ old('satuan', $barang->satuan) == 'pak' ? 'selected' : '' }}>pak</option>
+                            <option value="rim" {{ old('satuan', $barang->satuan) == 'rim' ? 'selected' : '' }}>rim</option>
+                            <option value="dus" {{ old('satuan', $barang->satuan) == 'dus' ? 'selected' : '' }}>dus</option>
+                            <option value="roll" {{ old('satuan', $barang->satuan) == 'roll' ? 'selected' : '' }}>roll</option>
+                            <option value="lusin" {{ old('satuan', $barang->satuan) == 'lusin' ? 'selected' : '' }}>lusin</option>
                         </select>
                         @error('satuan')
                             <div class="text-danger">{{ $message }}</div>

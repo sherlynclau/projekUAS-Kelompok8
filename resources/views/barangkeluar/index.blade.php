@@ -55,6 +55,7 @@
                                 <td>{{ $item->satuan }}</td>
                                 <td>{{ $item->penerima }}</td>
                                 <td>
+                                    <a href="{{ route('barangkeluar.show', $item->id) }}" class="btn btn-info">Show</a>
                                     <a href="{{ route('barangkeluar.edit', $item->id) }}" class="btn btn-warning">Edit</a>
                                     <form action="{{ route('barangkeluar.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf

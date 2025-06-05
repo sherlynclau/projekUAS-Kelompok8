@@ -31,40 +31,39 @@
               </div>
             </div>
             <div class="card-body">
-                <table class = "table">
-                    <thead>
-                        <tr>    
-                            <th>Tanggal</th>
-                            <th>Kode Transaksi</th>
-                            <th>Kode Barang</th>
-                            <th>Nama Barang</th>   
-                            <th>Kategori</th>
-                            <th>Jumlah</th>
-                            <th>Satuan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($barangMasuk as $item)
-                            <tr>
-                                <td>{{ $item->tanggal }}</td>
-                                <td>{{ $item->kode_transaksi}}</td>
-                                <td>{{ $item->kode_barang }}</td>
-                                <td>{{ $item->nama_barang }}</td>
-                                <td>{{ $item->kategori }}</td>
-                                <td>{{ $item->jumlah }}</td>
-                                <td>{{ $item->satuan }}</td>
-                                <td>
-                                    <a href="{{ route('barangmasuk.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('barangmasuk.destroy', $item->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
+              <div class="card-body">
+              <table class="table table-bordered table-striped">
+                  <tr>
+                      <th>Tanggal</th>
+                      <td>{{ $barangMasuk->tanggal }}</td>
+                  </tr>
+                  <tr>
+                      <th>Kode Transaksi</th>
+                      <td>{{ $barangMasuk->kode_transaksi }}</td>
+                  </tr>
+                  <tr>
+                      <th>Kode Barang</th>
+                      <td>{{ $barangMasuk->kode_barang }}</td>
+                  </tr>
+                  <tr>
+                      <th>Nama Barang</th>
+                      <td>{{ $barangMasuk->nama_barang }}</td>
+                  </tr>
+                  <tr>
+                      <th>Kategori</th>
+                      <td>{{ $barangMasuk->kategori }}</td>
+                  </tr>
+                  <tr>
+                      <th>Jumlah</th>
+                      <td>{{ $barangMasuk->jumlah }}</td>
+                  </tr>
+                  <tr>
+                      <th>Satuan</th>
+                      <td>{{ $barangMasuk->satuan }}</td>
+                  </tr>
+              </table>
+          </div>
+
                 </table>
             </div>
         </div>

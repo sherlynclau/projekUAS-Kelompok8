@@ -9,7 +9,7 @@
           <!-- Default box -->
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">List Barang Keluar</h3>
+              <h3 class="card-title">Detail Barang Keluar</h3>
               <div class="card-tools">
                 <button
                   type="button"
@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="card-body">
-                <table class = "table">
+                <table class="table">
                     <thead>
                         <tr>    
                             <th>Tanggal</th>
@@ -46,24 +46,22 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <tr>
-                                <td>{{ $item->tanggal }}</td>
-                                <td>{{ $item->kode_transaksi}}</td>
-                                <td>{{ $item->kode_barang }}</td>
-                                <td>{{ $item->nama_barang }}</td>
-                                <td>{{ $item->jumlah }}</td>
-                                <td>{{ $item->satuan }}</td>
-                                <td>{{ $item->penerima }}</td>
-                                <td>
-                                    <a href="{{ route('barangkeluar.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('barangkeluar.destroy', $item->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                            <td>{{ $barangKeluar->tanggal }}</td>
+                            <td>{{ $barangKeluar->kode_transaksi }}</td>
+                            <td>{{ $barangKeluar->kode_barang }}</td>
+                            <td>{{ $barangKeluar->nama_barang }}</td>
+                            <td>{{ $barangKeluar->jumlah }}</td>
+                            <td>{{ $barangKeluar->satuan }}</td>
+                            <td>{{ $barangKeluar->penerima }}</td>
+                            <td>
+                                <a href="{{ route('barangkeluar.edit', $barangKeluar->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('barangkeluar.destroy', $barangKeluar->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -10,7 +10,7 @@
                   <div class="card-header"><div class="card-title">Edit Barang Masuk</div></div>
                   <!--end::Header-->
                   <!--begin::Form-->
-                  <form action="{{ route('barangmasuk.update') }}" method="POST" enctype="multipart/form-data">
+                  <form action="{{ route('barangmasuk.update', $barangMasuk->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <!--begin::Body-->
@@ -58,23 +58,23 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="satuan" class="form-label">Satuan</label>
-                            <select class="form-control" name="satuan">
-                                <option value="">-- Pilih Satuan --</option>
-                                <option value="pcs" {{ old('satuan', $barangmasuk->satuan ?? '') == 'pcs' ? 'selected' : '' }}>pcs</option>
-                                <option value="unit" {{ old('satuan', $barangmasuk->satuan ?? '') == 'unit' ? 'selected' : '' }}>unit</option>
-                                <option value="kotak" {{ old('satuan', $barangmasuk->satuan ?? '') == 'kotak' ? 'selected' : '' }}>kotak</option>
-                                <option value="lembar" {{ old('satuan', $barangmasuk->satuan ?? '') == 'lembar' ? 'selected' : '' }}>lembar</option>
-                                <option value="pak" {{ old('satuan', $barangmasuk->satuan ?? '') == 'pak' ? 'selected' : '' }}>pak</option>
-                                <option value="rim" {{ old('satuan', $barangmasuk->satuan ?? '') == 'rim' ? 'selected' : '' }}>rim</option>
-                                <option value="dus" {{ old('satuan', $barangmasuk->satuan ?? '') == 'dus' ? 'selected' : '' }}>dus</option>
-                                <option value="roll" {{ old('satuan', $barangmasuk->satuan ?? '') == 'roll' ? 'selected' : '' }}>roll</option>
-                                <option value="lusin" {{ old('satuan', $barangmasuk->satuan ?? '') == 'lusin' ? 'selected' : '' }}>lusin</option>
-                            </select>
-                            @error('satuan')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        <label for="satuan" class="form-label">Satuan</label>
+                        <select class="form-control" name="satuan" required>
+                            <option value="">-- Pilih Satuan --</option>
+                            <option value="pcs" {{ old('satuan', $barangMasuk->satuan) == 'pcs' ? 'selected' : '' }}>pcs</option>
+                            <option value="unit" {{ old('satuan', $barangMasuk->satuan) == 'unit' ? 'selected' : '' }}>unit</option>
+                            <option value="kotak" {{ old('satuan', $barangMasuk->satuan) == 'kotak' ? 'selected' : '' }}>kotak</option>
+                            <option value="lembar" {{ old('satuan', $barangMasuk->satuan) == 'lembar' ? 'selected' : '' }}>lembar</option>
+                            <option value="pak" {{ old('satuan', $barangMasuk->satuan) == 'pak' ? 'selected' : '' }}>pak</option>
+                            <option value="rim" {{ old('satuan', $barangMasuk->satuan) == 'rim' ? 'selected' : '' }}>rim</option>
+                            <option value="dus" {{ old('satuan', $barangMasuk->satuan) == 'dus' ? 'selected' : '' }}>dus</option>
+                            <option value="roll" {{ old('satuan', $barangMasuk->satuan) == 'roll' ? 'selected' : '' }}>roll</option>
+                            <option value="lusin" {{ old('satuan', $barangMasuk->satuan) == 'lusin' ? 'selected' : '' }}>lusin</option>
+                        </select>
+                        @error('satuan')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <!--end::Body-->
                     <!--begin::Footer-->

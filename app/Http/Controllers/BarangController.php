@@ -69,19 +69,19 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        $barang = Barang::findOrFail($barang->id);
+        // Tidak perlu findOrFail lagi
         return view('barang.edit', compact('barang'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Barang $barang)
+    public function update(Request $request, $id)
     {
-        $barang = Barang::findOrFail($barang->id);
+        $barang = Barang::findOrFail($id);
         $input = $request->validate([
             'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'kode_barang' => 'required|unique:barang,kode_barang,' . $barang->id,
+            'kode_barang' => 'required',
             'nama_barang' => 'required',
             'kategori' => 'required',
             'satuan' => 'required',
@@ -100,7 +100,7 @@ class BarangController extends Controller
 
         $barang->update($input);
 
-        return redirect()->route('barang.index')->with('success', 'Barang berhasil diperbarui.');
+        return redirect()->route('barang.show', $barang->id)->with('success', 'Barang berhasil diupdate!');
     }
 
     /**
@@ -108,7 +108,7 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        $barang = Barang::findOrFail($barang->id);
+        // Tidak perlu findOrFail lagi
         $barang->delete();
         return redirect()->route('barang.index')->with('success', 'Barang berhasil dihapus.');
     }
