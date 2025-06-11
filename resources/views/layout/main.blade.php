@@ -51,7 +51,7 @@
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
-      <nav class="app-header navbar navbar-expand bg-body">
+      <nav class="app-header navbar navbar-expand" style="background-color: #dbe6ff;">
         <!--begin::Container-->
         <div class="container-fluid">
           <!--begin::Start Navbar Links-->
@@ -67,12 +67,12 @@
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
+            {{-- <!--begin::Navbar Search-->
             <li class="nav-item">
               <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                 <i class="bi bi-search"></i>
               </a>
-            </li>
+            </li> --}}
             <!--end::Navbar Search-->
             <!--begin::Messages Dropdown Menu-->
             <li class="nav-item dropdown">
@@ -248,7 +248,7 @@
       </nav>
       <!--end::Header-->
       <!--begin::Sidebar-->
-      <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="light">
+      <aside class="app-sidebar shadow" data-bs-theme="light" style="background-color: #dbe6ff;">
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->

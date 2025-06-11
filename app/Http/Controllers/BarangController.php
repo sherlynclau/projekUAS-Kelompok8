@@ -10,9 +10,16 @@ class BarangController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $barang = Barang::all();
+        $query = Barang::query();
+
+        if ($request->has('search') && $request->search != '') {
+            $query->where('nama_barang', 'like', '%' . $request->search . '%');
+        }
+
+        $barang = $query->get();
+
         return view('barang.index', compact('barang'));
     }
 
