@@ -38,10 +38,14 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
-
+                
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
             </x-primary-button>
+        </div>
+        <div class="mt-4 text-center">
+            <span class="text-sm text-gray-600">Don't have an account?</span>
+            <a href="{{ route('register') }}" class="text-sm text-blue-600 hover:underline ml-1">Register</a>
         </div>
     </form>
 </x-guest-layout>
