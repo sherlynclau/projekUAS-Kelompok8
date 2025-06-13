@@ -255,9 +255,9 @@
           <a class='brand-link' href='/dist/pages/'>
             <!--begin::Brand Image-->
             <img
-              src="{{ asset('images/StockING logo.png')}}"
+              src="{{ asset('images/StockING Logo.png')}}"
               alt="Stocking Logo"
-              class="w-100 h-100"
+              class="w-100 h-100" 
             />
             {{-- <!--end::Brand Image-->
             <!--begin::Brand Text-->
