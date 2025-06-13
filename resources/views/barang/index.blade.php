@@ -23,11 +23,11 @@
             <div class="col-md-3 mb-4">
                 <a href="{{ route('barang.show', $item->id) }}" style="text-decoration: none; color: inherit;">
                     <div class="card h-100">
-                        <div class="d-flex justify-content-center align-items-center pt-3" style="height: 280px;">
+                        <div class="d-flex justify-content-center align-items-center pt-3" style="height: 220px;">
                             @if(Str::startsWith($item->foto, 'http'))
-                                <img src="{{ $item->foto }}" alt="{{ $item->nama_barang }}" style="width:250px; height:250px; object-fit:contain; border-radius:10px; box-shadow:0 2px 8px #0001; background:#fff;">
+                                <img src="{{ $item->foto }}" alt="{{ $item->nama_barang }}" style="width:160px; height:160px; object-fit:cover; border-radius:10px; box-shadow:0 2px 8px #0001;">
                             @else
-                                <img src="{{ asset('images/' . $item->foto) }}" alt="{{ $item->nama_barang }}" style="width:220px; height:160px; object-fit:contain; border-radius:10px; box-shadow:0 2px 8px #0001; background:#fff;">
+                                <img src="{{ asset('images/' . $item->foto) }}" alt="{{ $item->nama_barang }}" style="width:160px; height:160px; object-fit:cover; border-radius:10px; box-shadow:0 2px 8px #0001;">
                             @endif
                         </div>
                         <div class="card-body">
