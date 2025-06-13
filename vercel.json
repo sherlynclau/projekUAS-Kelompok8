@@ -16,7 +16,7 @@
         {
             "src": "/css/(.*)",
             "dest": "/public/css/"
-        },
+        }, 
         {
             "src": "/images/(.*)",
             "dest": "/public/images/"
