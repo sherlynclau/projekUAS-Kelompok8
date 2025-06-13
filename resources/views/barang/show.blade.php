@@ -8,9 +8,11 @@
     <div class="row">
         <!-- Gambar -->
         <div class="col-md-4">
-            <div class="card shadow-sm p-4 d-flex align-items-center justify-content-center" style="height: 320px;">
-                <img src="{{ asset('images/' . $barang->foto) }}" class="img-fluid"
-                     style="object-fit: contain; max-height: 100%; width: 100%;">
+            <div class="card shadow-sm p-8 d-flex align-items-center justify-content-center">
+                {{-- <img src="{{ asset('images/' . $barang->foto) }}" class="img-fluid"
+                     style="object-fit: contain; max-height: 100%; width: 100%;"> --}}
+                 <img src="{{ $barang->foto }}" class="img-fluid"
+                     style="object-fit: contain; max-height: 100%; width: 88%;">
             </div>
         </div>
 
