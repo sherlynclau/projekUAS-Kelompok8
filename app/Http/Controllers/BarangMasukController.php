@@ -111,10 +111,27 @@ class BarangMasukController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BarangMasuk $barangMasuk)
+    public function destroy($id)
     {
-        // Jika ingin mengurangi stok barang saat barang masuk dihapus, tambahkan logika di sini.
-        $barangMasuk->delete();
-        return redirect()->route('barangmasuk.index')->with('success', 'Barang masuk berhasil dihapus.');
+        DB::beginTransaction();
+        try {
+            $barangMasuk = BarangMasuk::findOrFail($id);
+            $barang = Barang::where('kode_barang', $barangMasuk->kode_barang)->first();
+
+            if ($barang) {
+                $barang->increment('jumlah_stok', $barangMasuk->jumlah_stok);
+            }
+
+            $barangMasuk->delete();
+
+            DB::commit();
+            return redirect()->route('barangmasuk.index')
+                ->with('success', 'Barang masuk berhasil dihapus dan stok dikembalikan.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Gagal menghapus barang masuk dan mengembalikan stok: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Terjadi kesalahan saat menghapus barang masuk.');
+        }
     }
 }

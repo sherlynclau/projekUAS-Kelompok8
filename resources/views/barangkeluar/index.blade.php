@@ -63,11 +63,11 @@
                                     @endcan
                                     @can('delete', $item)
                                     <form action="{{ route('barangkeluar.destroy', $item->id) }}" method="POST" class="d-inline">
-                                    @endcan
                                     @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

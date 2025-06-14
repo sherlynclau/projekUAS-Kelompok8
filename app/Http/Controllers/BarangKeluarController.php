@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BarangKeluar;
+use App\Models\Barang;
 use Illuminate\Http\Request;
-use App\Models\Barang; // Ini adalah model Produk kamu, pastikan namanya 'Barang' atau 'Product'
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log; // Tambahkan ini untuk logging error
+use Illuminate\Support\Facades\Log;
 
 class BarangKeluarController extends Controller
 {
@@ -132,26 +132,27 @@ class BarangKeluarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BarangKeluar $barangKeluar)
+    public function destroy($id)
     {
-        // Penting: Saat menghapus catatan barang keluar, kamu mungkin perlu mengembalikan stok barang.
-        // Jika ya, tambahkan logika di sini:
-        // DB::beginTransaction();
-        // try {
-        //     $barang = Barang::where('kode_barang', $barangKeluar->kode_barang)->first();
-        //     if ($barang) {
-        //         $barang->increment('stock', $barangKeluar->jumlah);
-        //     }
-        //     $barangKeluar->delete();
-        //     DB::commit();
-        //     return redirect()->route('barangkeluar.index')->with('success', 'Barang keluar berhasil dihapus dan stok dikembalikan.');
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     Log::error('Gagal menghapus barang keluar dan mengembalikan stok: ' . $e->getMessage());
-        //     return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus barang keluar.');
-        // }
+        DB::beginTransaction();
+        try {
+            $barangKeluar = BarangKeluar::findOrFail($id);
+            $barang = Barang::where('kode_barang', $barangKeluar->kode_barang)->first();
 
-        $barangKeluar->delete();
-        return redirect()->route('barangkeluar.index')->with('success', 'Barang keluar berhasil dihapus.');
+            if ($barang) {
+                $barang->increment('jumlah_stok', $barangKeluar->jumlah_stok);
+            }
+
+            $barangKeluar->delete();
+
+            DB::commit();
+            return redirect()->route('barangkeluar.index')
+                ->with('success', 'Barang keluar berhasil dihapus dan stok dikembalikan.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Gagal menghapus barang keluar dan mengembalikan stok: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Terjadi kesalahan saat menghapus barang keluar.');
+        }
     }
 }
